@@ -715,7 +715,7 @@ class VQVAEModel(VideoBaseAE):
 
     def __init__(self, config: VQVAEConfiguration):
         super().__init__()
-        self.config = config
+        #self.config = config #FIXME: Turple can not be change
         self.embedding_dim = config.embedding_dim
         self.n_codes = config.n_codes
         self.encoder = Encoder(config.n_hiddens, config.n_res_layers, config.downsample)

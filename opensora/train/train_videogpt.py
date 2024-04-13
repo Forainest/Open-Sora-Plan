@@ -58,6 +58,10 @@ def train(args, vqvae_args: VQVAEArgument, training_args: VQVAETrainingArgument)
         sequence_length=args.sequence_length,
         resolution=config.resolution,
     )
+    if training_args.bf16:
+        model = model.to(dtype=torch.bfloat16)
+    elif training_args.fp16:
+        model = model.to(dtype=torch.float16)
     # Load Trainer
     trainer = VQVAETrainer(model, training_args, train_dataset=dataset)
     trainer.train()
